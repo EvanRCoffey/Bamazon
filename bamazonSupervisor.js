@@ -1,5 +1,6 @@
 var inquirer = require('inquirer');
 var mysql = require('mysql');
+require("console.table");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -36,10 +37,11 @@ inquirer.prompt([{
 	if (answer.menuOption === "View All Departments") {
 		console.log("Selected option 1");
 		connection.query("SELECT * FROM departments", function(err, res) {
-		  for (var i = 0; i < res.length; i++) {
-		  	var total_profit = res[i].total_sales - res[i].over_head_costs;
-		    console.log(res[i].id + " | " + res[i].department_name + " | " + res[i].over_head_costs + " | " + res[i].total_sales + " | " + total_profit);
-		  }
+		  // for (var i = 0; i < res.length; i++) {
+		  // 	var total_profit = res[i].total_sales - res[i].over_head_costs;
+		  //   console.log(res[i].id + " | " + res[i].department_name + " | " + res[i].over_head_costs + " | " + res[i].total_sales + " | " + total_profit);
+		  // }
+		  console.table(res);
 		  console.log("-----------------------------------");
 		})
 	}

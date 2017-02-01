@@ -1,3 +1,3 @@
-#Week of 12 HW: Node.js & MySQL
+All you need to do is make the tables look pretty.  Apparently there's an NPM package for that.
 
-### Submission Guide
+Also don't forget to submit to bootcampspot.

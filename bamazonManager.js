@@ -1,5 +1,6 @@
 var inquirer = require('inquirer');
 var mysql = require('mysql');
+require("console.table");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -26,9 +27,10 @@ inquirer.prompt([{
 	if (answer.menuOption === "View Products for Sale") {
 		console.log("Selected option 1");
 		connection.query("SELECT * FROM products", function(err, res) {
-		  for (var i = 0; i < res.length; i++) {
-		    console.log(res[i].id + " | " + res[i].product_name + " | " + res[i].price + " | " + res[i].stock_quantity);
-		  }
+		  // for (var i = 0; i < res.length; i++) {
+		  //   console.log(res[i].id + " | " + res[i].product_name + " | " + res[i].price + " | " + res[i].stock_quantity);
+		  // }
+		  console.table(res);
 		  console.log("-----------------------------------");
 		})
 	}
@@ -39,9 +41,10 @@ inquirer.prompt([{
 		connection.query("SELECT * FROM products", function(err, res) {
 		  for (var i = 0; i < res.length; i++) {
 		  	if (res[i].stock_quantity < 5) {
-		    console.log(res[i].id + " | " + res[i].product_name + " | " + res[i].price + " | " + res[i].stock_quantity);
+		    	console.log(res[i].id + " | " + res[i].product_name + " | " + res[i].price + " | " + res[i].stock_quantity);
 		  	}
 		  }
+		  console.log("Low inventory items listed above.");
 		  console.log("-----------------------------------");
 		})
 	}
